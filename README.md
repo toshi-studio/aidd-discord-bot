@@ -19,8 +19,7 @@
   - Sélectionner la sous-section `URL Generator`
   - Cocher le scope `bot`
   - Donner la permission `Administrator` 
-  - Copier l'URL générée
-  https://discord.com/api/oauth2/authorize?client_id=1204894151649271828&permissions=8&scope=bot
+  - Copier l'URL générée. Exemple : https://discord.com/api/oauth2/authorize?client_id=120489415164828&permissions=8&scope=bot
 
 Une fois le bot déclaré :
 - Se rendre sur un canal du serveur Discord, poster en message l'URL précédemment copiée
