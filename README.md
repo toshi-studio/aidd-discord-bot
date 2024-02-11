@@ -61,3 +61,23 @@ Il est nécessaire de créer un fichier `.env` à la racine du projet. Se baser 
 ## Documentation
 - [Documentation de la librairie **discord.js**](https://discord.js.org/docs/packages/discord.js/14.14.1)
 - [Documentation de **firebase**](https://firebase.google.com/docs/database/web/start?hl=fr&authuser=0)
+
+## Annexe
+Il est recommandé d'utiliser des index pour améliorer les tris et les recherches et le crawler se base sur les canaux afin de ne sauvegarder que les derniers messages. Il est donc nécessaire d'ajouter `channelId` (qui sert de clé étrangère) aux tables `messages` et `threads`.
+
+Pour se faire, dans l'onglet "Règles" de la page "Realtime Database", on peut éditer le JSON comme suit :
+
+```json
+{
+  "rules": {
+    ".read": false,
+    ".write": false,   
+    "messages": {
+      ".indexOn": ["channelId"]
+    },
+    "threads": {
+      ".indexOn": ["channelId"]
+    }
+  }
+}
+```

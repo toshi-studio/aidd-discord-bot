@@ -18,16 +18,17 @@ module.exports = {
     // Set a message
     set: async function(channelId, messageId, author, messageContent, messageTimestamp) {
         const channelRef = this.database.ref(`messages/${messageId}/channelId`);
-        await channelRef.set(channelId);
-
         const authorRef = this.database.ref(`messages/${messageId}/author`);
-        await authorRef.set(author);
-
         const contentRef = this.database.ref(`messages/${messageId}/content`);
-        await contentRef.set(messageContent);
-
         const timestampRef = this.database.ref(`messages/${messageId}/timestamp`);
-        await timestampRef.set(messageTimestamp);
+        await Promise.all(
+            [
+                channelRef.set(channelId),
+                authorRef.set(author),
+                contentRef.set(messageContent),
+                timestampRef.set(messageTimestamp)
+            ]
+        );
     },
 
     // Get by channel id

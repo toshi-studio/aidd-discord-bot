@@ -16,11 +16,19 @@ module.exports = {
     },
 
     // Set a channel
-    set: async function(channelId, channelName, lastSyncMessageSnowflake) {
+    set: async function(channelId, channelName) {
         const nameRef = this.database.ref(`channels/${channelId}/name`);
         await nameRef.set(channelName);
-        const nameSync = this.database.ref(`channels/${channelId}/lastSyncMessageId`);
-        await nameSync.set(lastSyncMessageSnowflake);
+    },
+
+    updateLastSyncMessage: async function(channelId, lastSyncMessageSnowflake) {
+        const syncRef = this.database.ref(`channels/${channelId}/lastSyncMessageId`);
+        await syncRef.set(lastSyncMessageSnowflake);
+    },
+
+    updateLastSyncThread: async function(channelId, lastSyncThreadSnowflake) {
+        const syncRef = this.database.ref(`channels/${channelId}/lastSyncThreadId`);
+        await syncRef.set(lastSyncThreadSnowflake);
     },
 
     // Get all the channels
