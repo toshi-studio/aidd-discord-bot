@@ -26,24 +26,30 @@ Une fois le bot déclaré :
 - Confirmer le droit "Admnistrateur" accordé au bot
 
 ## Base de données firebase
+### Création du projet
 - Se rendre sur https://console.firebase.google.com
 - Se connecter avec un compte Google
 - Ajouter un projet 
 - Saisir le nom du projet / Cliquer sur "Continuer"
 - Décocher Google Analytics (C'est par principe mais tu peux faire comme tu le sens)
 - Valider autant de fois que nécessaire pour arriver sur le dashboard
+
+### Création de la base de données
+- Cliquer sur "Créer" dans le menu de gauche
+- Cliquer sur "Realtime database"
+- Cliquer sur "Créer une base de données"
+- Sélectionner une région de serveur puis cliquer sur "Suivant"
+- Laisser le "mode vérouillé" puis cliquer sur "Activer"
+- Cliquer sur l'icône "lien" 🔗 et coller l'url copiée dans le fichier `.env`, clé `FIREBASE_DATABASE_URL`
+
+### Récupérer les infos de connexion
 - Cliquer sur la roue crantée en haut à gauche de l'écran, à droite de "🏠 Vue d'ensemble" et sélectionner "Paramètres du projet"
-- Ajouter une application web au projet en cliquant sur l'icône `</>` 
-- Ajouter un pseudo à l'application
-- Cocher l'option hosting si besoin
-- Valider
-- Dans le fichier `.env` ajouter les informations de configuration fournies par firebase, dans l'objet `firebaseConfig` généré et affiché à l'écran
-  - `apiKey => FIREBASE_API_KEY`
-  - `authDomain => FIREBASE_AUTH_DOMAIN`
-  - `projectId => FIREBASE_PROJECT_ID`
-  - `storageBucket => FIREBASE_STORAGE_BUCKET`
-  - `messagingSenderId => FIREBASE_MESSAGING_SENDER_ID`
-  - `appId => FIREBASE_APP_ID`
+- Aller dans l'onglet "Comptes de service" 
+- Cliquer sur "Générer une nouvelle clé privée". Cela déclenchera le téléchargement d'un fichier JSON
+- Placer le fichier JSON où vous voulez, par exemple dans `src/secret` (utilisé dans le code)
+- Mettre le chemin vers le fichier dans le fichier `.env`, clé `FIREBASE_SERVICE_ACCOUNT`. 
+
+**NOTE** le répertoire `src` est considéré comme la racine du projet. Le `/` initial est inutile.
 
 ## Poste de développement
 Le projet utilise nodeJS pour 
