@@ -1,5 +1,5 @@
 # aidd-discord-bot
-
+Sauvegarde incrémentale des canaux texte et threads de serveur Discord.
 
 ## Déclaration du bot et ajout de celui-ci au serveur Discord
 - Se rendre dans l'espace développeur de Discord à l'adresse https://discord.com/developers/applications (Attention, l'application **ne peut pas** contenir le mot **discord**)
@@ -46,10 +46,10 @@ Une fois le bot déclaré :
 - Cliquer sur la roue crantée en haut à gauche de l'écran, à droite de "🏠 Vue d'ensemble" et sélectionner "Paramètres du projet"
 - Aller dans l'onglet "Comptes de service" 
 - Cliquer sur "Générer une nouvelle clé privée". Cela déclenchera le téléchargement d'un fichier JSON
-- Placer le fichier JSON où vous voulez, par exemple dans `src/secret` (utilisé dans le code)
-- Mettre le chemin vers le fichier dans le fichier `.env`, clé `FIREBASE_SERVICE_ACCOUNT`. 
+- Placer le fichier JSON où tu veux dans le projet.
+- Mettre le chemin vers le fichier dans le fichier `.env`, clé `FIREBASE_SERVICE_ACCOUNT`. Example: si le fichier s'appelle `secret_firebase_file.json` et que tu le mets dans le dossier `src/secret`, il te faudra saisir `secret/secret_firebase_file.json`
 
-**NOTE** le répertoire `src` est considéré comme la racine du projet. Le `/` initial est inutile.
+**NOTE** Le `/` initial est inutile, cf. example ci-dessus.
 
 ## Poste de développement
 Le projet utilise nodeJS pour 
@@ -58,11 +58,9 @@ Le projet utilise nodeJS pour
 
 Il est nécessaire de créer un fichier `.env` à la racine du projet. Se baser sur le fichier `env.sample` pour le créer.
 
-## Documentation
-- [Documentation de la librairie **discord.js**](https://discord.js.org/docs/packages/discord.js/14.14.1)
-- [Documentation de **firebase**](https://firebase.google.com/docs/database/web/start?hl=fr&authuser=0)
 
-## Annexe
+## Annexes
+### Configuration des rules firebase
 Il est recommandé d'utiliser des index pour améliorer les tris et les recherches et le crawler se base sur les canaux afin de ne sauvegarder que les derniers messages. Il est donc nécessaire d'ajouter `channelId` (qui sert de clé étrangère) aux tables `messages` et `threads`.
 
 Pour se faire, dans l'onglet "Règles" de la page "Realtime Database", on peut éditer le JSON comme suit :
@@ -81,3 +79,7 @@ Pour se faire, dans l'onglet "Règles" de la page "Realtime Database", on peut �
   }
 }
 ```
+
+### Documentation
+- [Documentation de la librairie **discord.js**](https://discord.js.org/docs/packages/discord.js/14.14.1)
+- [Documentation de **firebase**](https://firebase.google.com/docs/database/web/start?hl=fr&authuser=0)
