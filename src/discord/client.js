@@ -31,7 +31,7 @@ module.exports = {
         });
 
         const database = firebaseAdmin.database();
-        
+
         // Initialize the channel repository
         const fb_channels = require('../repository/channels');
         fb_channels.init(database);
@@ -61,40 +61,38 @@ module.exports = {
                 const textChannels = channels.filter(channel => channel.type === ChannelType.GuildText);
 
                 // Loop through the text channels and log the messages
-                textChannels.forEach(async (channel) => {
+                await Promise.all(textChannels.map(async (channel) => {
 
                     // Create the message filter
-                    const messageFilter = (allChannels && allChannels[channel.id]) 
-                                            ? { after: allChannels[channel.id].lastSyncMessageId } 
-                                            : {};
+                    const messageFilter = (allChannels && allChannels[channel.id])
+                        ? { after: allChannels[channel.id].lastSyncMessageId }
+                        : {};
                     // Fetch the messages
                     let messages = await channel.messages.fetch(messageFilter);
 
                     // Reverse order (oldest to newest)
                     messages = new Map(Array.from(messages).reverse());
 
-                    messages.forEach(async(message) => {
+                    await Promise.all(Array.from(messages.values()).map(async (message) => {
                         // Update the channel last sync message
-                        // await is optionnal here. It's just to have the end message
                         await fb_channels.set(
-                            channel.id, 
-                            channel.name, 
+                            channel.id,
+                            channel.name,
                             message.id
                         );
 
                         // Save the message
-                        // await is optionnal here. It's just to have the end message
                         await fb_messages.set(
-                            channel.id, 
-                            message.id, 
-                            message.author.username, 
-                            message.cleanContent, 
+                            channel.id,
+                            message.id,
+                            message.author.username,
+                            message.cleanContent,
                             message.createdTimestamp
                         );
-                        const _humanDate = (new Date(message.createdTimestamp)).toLocaleDateString();
+                        const _humanDate = (new Date(message.createdTimestamp)).toLocaleString();
                         console.log(`Synching message in ${channel.name} from ${message.author.username} on ${_humanDate}`);
-                    });
-                });
+                    }));
+                }));
                 console.log('Crawling done!');
                 resolve();
             }

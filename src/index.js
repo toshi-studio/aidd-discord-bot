@@ -1,7 +1,6 @@
 const client = require('./discord/client');
 client.init()
-.then(() => {
-    client.crawl();
+.then(async () => {
+    await client.crawl();
+    client.logout();
 });
-
-
