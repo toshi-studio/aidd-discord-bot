@@ -36,7 +36,7 @@ Une fois le bot déclaré :
 
 ### Création de la base de données
 - Cliquer sur "Créer" dans le menu de gauche
-- Cliquer sur "Realtime database"
+- Cliquer sur "Realtime database" (j'ai pris la RTDB mais storage aurait pu faire aussi. je n'ai juste pas fait attention au début)
 - Cliquer sur "Créer une base de données"
 - Sélectionner une région de serveur puis cliquer sur "Suivant"
 - Laisser le "mode vérouillé" puis cliquer sur "Activer"
