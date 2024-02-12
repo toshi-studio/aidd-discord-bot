@@ -36,7 +36,7 @@ Une fois le bot déclaré :
 
 ### Création de la base de données
 - Cliquer sur "Créer" dans le menu de gauche
-- Cliquer sur "Realtime database" (j'ai pris la RTDB mais storage aurait pu faire aussi. je n'ai juste pas fait attention au début)
+- Cliquer sur "Realtime database" (j'ai pris la RTDB mais storage aurait pu le faire aussi. Je n'ai juste pas fait attention)
 - Cliquer sur "Créer une base de données"
 - Sélectionner une région de serveur puis cliquer sur "Suivant"
 - Laisser le "mode vérouillé" puis cliquer sur "Activer"
@@ -47,16 +47,16 @@ Une fois le bot déclaré :
 - Aller dans l'onglet "Comptes de service" 
 - Cliquer sur "Générer une nouvelle clé privée". Cela déclenchera le téléchargement d'un fichier JSON
 - Placer le fichier JSON où tu veux dans le projet.
-- Mettre le chemin vers le fichier dans le fichier `.env`, clé `FIREBASE_SERVICE_ACCOUNT`. Example: si le fichier s'appelle `secret_firebase_file.json` et que tu le mets dans le dossier `src/secret`, il te faudra saisir `secret/secret_firebase_file.json`
+- Mettre le chemin vers le fichier dans le fichier `.env`, clé `FIREBASE_SERVICE_ACCOUNT`. La racine du projet est également la racine de recherche du fichier. Exemple: si le fichier s'appelle `secret_firebase_file.json` et que tu le mets dans le dossier `src/secret`, il te faudra saisir `src/secret/secret_firebase_file.json`
 
-**NOTE** Le `/` initial est inutile, cf. example ci-dessus.
+**NOTE** Le `/` initial est inutile, cf. exemple ci-dessus.
 
 ## Poste de développement
 Le projet utilise nodeJS pour 
 - L'installation des dépendances (lancer la commande `npm install`, en étant à la racine du projet, pour récupérer les dépendances du projet avant exécution)
 - Pouvoir exécuter le code javascript du robot en ligne de commande (lancer la commande `node .`)
 
-Il est nécessaire de créer un fichier `.env` à la racine du projet. Se baser sur le fichier `env.sample` pour le créer.
+Il est nécessaire de créer un fichier `.env` à la racine du projet. Se baser sur le fichier `.env.sample` pour le créer.
 
 
 ## Annexes

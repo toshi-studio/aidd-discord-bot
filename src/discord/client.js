@@ -14,7 +14,7 @@ module.exports = {
     init: function () {
         // Initialize the Firebase app
         const firebaseAdmin = require('firebase-admin');
-        var serviceAccount = require(`../${process.env.FIREBASE_SERVICE_ACCOUNT}`);
+        var serviceAccount = require(`../../${process.env.FIREBASE_SERVICE_ACCOUNT}`);
         firebaseAdmin.initializeApp({
             credential: firebaseAdmin.credential.cert(serviceAccount),
             databaseURL: process.env.FIREBASE_DATABASE_URL
